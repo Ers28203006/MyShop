@@ -1,58 +1,114 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@ViewBag.Title – приложение ASP.NET</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style5.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/all.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="/Home/Index" class="navbar-brand">
-                    <i class="fab fa-kickstarter fa-2x fa-fw"></i>артридж
-                </a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="/Home/Index">
-                            <i class="fa fa-home fa-fw fa-2x" aria-hidden="true"></i>&nbsp;Главная
-                        </a>
+    <div class="wrapper navbar-fixed-top">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div class="sidebar-head">
+                    <h3><i class="fab fa-kickstarter fa-2x fa-fw"></i>артридж</h3>
+                </div>
+                <ul class="list-unstyled components">
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li><a href="#">Home 1</a></li>
+                            <li><a href="#">Home 2</a></li>
+                            <li><a href="#">Home 3</a></li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="/Home/About">
-                            <i class="fa fa-briefcase fa-fw fa-2x" aria-hidden="true"></i>&nbsp;О нас
-                        </a>
+                        <a href="#">About</a>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li><a href="#">Page 1</a></li>
+                            <li><a href="#">Page 2</a></li>
+                            <li><a href="#">Page 3</a></li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="/Home/Contact">
-                            <i class="fa fa-phone fa-fw fa-2x" aria-hidden="true"></i>&nbsp;Контакты
-                        </a>
+                        <a href="#">Portfolio</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
                     </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+
+                <ul class="list-unstyled CTAs">
+                    <li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a></li>
+                    <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>
+                </ul>
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="content" class="col-md-12">
+
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="/Home/Index">
+                                        <i class="fa fa-home fa-fw fa-2x" aria-hidden="true"></i>&nbsp;Главная
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Home/About">
+                                        <i class="fa fa-briefcase fa-fw fa-2x" aria-hidden="true"></i>&nbsp;О нас
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Home/Contact">
+                                        <i class="fa fa-phone fa-fw fa-2x" aria-hidden="true"></i>&nbsp;Контакты
+                                    </a>
+                                </li>
+                            </ul>
+                                @Html.Partial("_LoginPartial")
+                        </div>
+                    </div>
+                </nav>
+                    @RenderBody()
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
-        </footer>
-    </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+     @RenderSection("scripts", required: false)
 </body>
 </html>
